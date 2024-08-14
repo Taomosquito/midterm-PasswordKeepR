@@ -1,1 +1,2 @@
-// Client facing scripts here
+
+// For handling password generation logic
