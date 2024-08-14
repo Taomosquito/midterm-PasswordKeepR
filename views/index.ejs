@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Home Page</title>
-
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>Login/Signup - PasswordKeepR</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
@@ -14,11 +12,35 @@
   <link rel="stylesheet" href="/styles/layout.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/auth.js"></script>
 </head>
 
 <body>
-  <h1>Have fun! 🥔</h1>
+  <header>
+    <%- include('partials/nav') %>
+  </header>
+  <main>
+    <div class="auth-container">
+      <h1>Welcome to PasswordKeepR</h1>
+      <div class="form-container">
+        <form id="login-form" action="/login" method="POST">
+          <h2>Login</h2>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <form id="signup-form" action="/register" method="POST">
+          <h2>Signup</h2>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <input type="text" name="organization" placeholder="Organization" required>
+          <button type="submit">Signup</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <%- include('partials/footer') %>
+  </footer>
 </body>
-
 </html>
