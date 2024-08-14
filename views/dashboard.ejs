@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/header') %>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Dashboard - PasswordKeepR</title>
+</head>
+<body>
+    <header>
+        <%- include('partials/nav') %>
+    </header>
+    <main>
+        <h1>Your Passwords</h1>
+        <div class="category-container">
+            <!-- Example Category -->
+            <div class="category">
+                <h2>Social Media</h2>
+                <div class="password-list">
+                    <%- include('partials/passwordCard') %>
+                    <!-- Repeat for each password -->
+                </div>
+            </div>
+            <!-- More categories -->
+        </div>
+    </main>
+    <footer>
+        <%- include('partials/footer') %>
+    </footer>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
