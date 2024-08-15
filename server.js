@@ -37,7 +37,9 @@ const addPasswordRoutes = require('./routes/addPassword');
 const loginRoutes = require('./routes/login');
 const registerRoutes = require('./routes/register');
 const logoutRoutes = require('./routes/logout');
-const policiesRoutes = require('./routes/policies');
+const policiesRoutes = require('./routes/privacyPolicy');
+const termsOfServiceRoutes = require('./routes/termsOfService')
+const contactRoutes = require('./routes/contact');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,7 +53,9 @@ app.use('/add-password', addPasswordRoutes);
 app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logoutRoutes);
-app.use('/policies', policiesRoutes);
+app.use('/privacy-policy', policiesRoutes);
+app.use('/terms-of-service', termsOfServiceRoutes);
+app.use('/contact', contactRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
