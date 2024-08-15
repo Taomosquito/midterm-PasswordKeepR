@@ -32,6 +32,8 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const dashboardRoutes = require('./routes/dashboard');
+const genPasswordRoutes = require('./routes/generatePassword');
+const addPasswordRoutes = require('./routes/addPassword');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -40,6 +42,8 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use('/generate-password', genPasswordRoutes);
+app.use('/add-password', addPasswordRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
