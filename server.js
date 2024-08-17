@@ -4,10 +4,14 @@ require('dotenv').config();
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
+const cookieSession = require("cookie-session");
+
 const morgan = require('morgan');
 
 const PORT = process.env.PORT || 8080;
+const { generateRandomString } = require("./helpers"); //helper functions
 const app = express();
+
 
 app.set('view engine', 'ejs');
 
@@ -25,6 +29,14 @@ app.use(
   })
 );
 app.use(express.static('public'));
+
+app.use(cookieSession({
+  name: "session",
+  keys: [ generateRandomString(10), generateRandomString(10)],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -63,7 +75,14 @@ app.use('/contact', contactRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  const userId = req.session.user_id; // assigns the user_id cookie's value to userId
+  if (!userId) { // if there is no user logged in redirects to login page
+     res.render('index');
+  }
+  res.redirect("/dashboard");
+
+  // before this only had res.render('index'), taken from express_server.js for tinyapp
+
 });
 
 app.listen(PORT, () => {
