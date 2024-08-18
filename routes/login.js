@@ -48,6 +48,7 @@ router.post('/', (req, res) => {
         console.log(foundUser.email);
         req.session.user_id = foundUser.email; // create cookie with the id of the logged in user as its value
         console.log(req.session.user_id);
+        res.redirect('/dashboard');
 
       })
      .catch(() => {
@@ -61,7 +62,7 @@ router.post('/', (req, res) => {
 
   // req.session.user_id = foundUser.id; // create cookie with the id of the logged in user as its value
   // res.redirect('/dashboard'); should be this line
-  res.redirect('/dashboard');
+
 
 });
 
