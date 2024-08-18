@@ -44,11 +44,11 @@ router.post('/', (req, res) => {
       );
     })
     .then(userResult => {
-      // Store the user's ID in the session
-      req.session.userId = userResult.rows[0].id;
+     // Store the user's ID in the session
+      // console.log(userResult.rows[0]);
+      req.session.user_id = userResult.rows[0].email;
 
-      return res.send("Data is entered!");
-
+      return res.redirect('/');
     })
     .catch(err => {
       if (err === 'Email already in use') {
