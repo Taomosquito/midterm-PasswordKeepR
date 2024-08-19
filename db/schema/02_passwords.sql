@@ -6,7 +6,7 @@ CREATE TABLE passwords (
   updated_at TIMESTAMP,
   site_name VARCHAR(255) NOT NULL,
   site_url VARCHAR(255) NOT NULL,
-  user_id INTEGER REFERENCES users(id),
-  category_id INTEGER REFERENCES categories(id),
+  user_id INTEGER REFERENCES users(id) NOT NULL,
+  category VARCHAR(255),
   username VARCHAR(255) NOT NULL
 );
