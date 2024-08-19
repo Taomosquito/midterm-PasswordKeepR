@@ -16,3 +16,43 @@ body {
     rgba(163, 208, 219, 1) 100%
   );
 }
+
+.password-box {
+  border: 2px solid #333;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Allows positioning of the delete button */
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: red;  /* Set the color to red */
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.password-card p {
+  margin: 10px 0;
+}
+
+.edit-button, .save-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #007BFF;
+}
+
+.password-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

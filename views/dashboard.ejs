@@ -14,24 +14,47 @@
       <% if (passwords.length > 0) { %>
         <% const categories = {}; %>
         <% passwords.forEach(password => { %>
-          <% if (!categories[password.category_name]) { %>
-            <% categories[password.category_name] = []; %>
+          <% if (password.category && !categories[password.category]) { %>
+            <% categories[password.category] = []; %>
           <% } %>
-          <% categories[password.category_name].push(password); %>
+          <% if (password.category) { %>
+            <% categories[password.category].push(password); %>
+          <% } %>
         <% }); %>
 
         <% for (let category in categories) { %>
           <div class="category">
             <h2><%= category %></h2>
             <div class="password-list">
+
+              <!-- Loop through each password in the category -->
               <% categories[category].forEach(password => { %>
-                <div class="password-card">
-                  <p><strong>Site Name:</strong> <%= password.site_name %></p>
-                  <p><strong>Site URL:</strong> <a href="<%= password.site_url %>" target="_blank"><%= password.site_url %></a></p>
-                  <p><strong>Password:</strong> <span class="copy-password" data-password="<%= password.pass %>"><%= password.pass %></span></p>
-                  <!-- Add any other necessary fields here -->
+                <div class="password-box">
+                  <!-- Red "X" button for deleting the entry -->
+                  <button class="delete-button" data-id="<%= password.id %>" style="color: red; position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">✖
+                  <div class="password-card">
+                    <p>
+                      <!-- Edit Button for Site Name -->
+                      <button class="edit-button" data-id="<%= password.id %>" data-field="site-name">✏️</button>
+                      <strong>Site Name:</strong>
+                      <span class="editable" id="site-name-<%= password.id %>"><%= password.site_name %></span>
+                    </p>
+                    <p>
+                      <!-- Edit Button for Site URL -->
+                      <button class="edit-button" data-id="<%= password.id %>" data-field="site-url">✏️</button>
+                      <strong>Site URL:</strong>
+                      <span class="editable" id="site-url-<%= password.id %>"><a href="<%= password.site_url %>" target="_blank"><%= password.site_url %></a></span>
+                    </p>
+                    <p>
+                      <!-- Edit Button for Password -->
+                      <button class="edit-button" data-id="<%= password.id %>" data-field="password">✏️</button>
+                      <strong>Password:</strong>
+                      <span class="editable" id="password-<%= password.id %>"><%= password.pass %></span>
+                    </p>
+                  </div>
                 </div>
               <% }); %>
+
             </div>
           </div>
         <% } %>
