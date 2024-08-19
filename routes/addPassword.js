@@ -3,11 +3,10 @@ const router = express.Router();
 const db = require('../db/connection'); // Assuming you have a db connection module
 
 
-
+let user_id = null;
 // Handle GET request for adding and editing a password
 router.get('/', (req, res) => {
-
-
+  user_id = req.session.user_id;
   res.render('addPassword');
 })
 

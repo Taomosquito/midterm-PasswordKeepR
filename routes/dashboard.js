@@ -10,11 +10,10 @@ router.get('/', (req, res) => {
 
   // Query to fetch the necessary data
   db.query(`
-    SELECT users.email, organizations.organization, passwords.pass, passwords.site_name, passwords.site_url, categories.name AS category_name
+    SELECT users.email, organizations.organization, passwords.pass, passwords.site_name, passwords.site_url, category
     FROM users
     JOIN organizations ON organizations.id = users.organization_id
     JOIN passwords ON users.id = passwords.user_id
-    JOIN categories ON categories.id = passwords.category_id
     WHERE users.id = $1`, [userId])
     .then(data => {
       const passwords = data.rows;
