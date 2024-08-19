@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
 
  let foundUser =  null;
 
- db.query(`SELECT email, pass FROM users WHERE email = $1`, [email])
+ db.query(`SELECT id, email, pass FROM users WHERE email = $1`, [email])
       .then(user => {
 
         foundUser = user.rows[0];
@@ -45,9 +45,12 @@ router.post('/', (req, res) => {
           res.status(403).send('Authentication failed');
           return;
         }
-        console.log(foundUser.email);
-        req.session.user_id = foundUser.email; // create cookie with the id of the logged in user as its value
-        console.log(req.session.user_id);
+
+        req.session.email = foundUser.email; // create cookie with the id of the logged in user as its value
+        req.session.user_id = foundUser.id;
+
+        console.log(req.session.email, req.session.user_id);
+
         res.redirect('/dashboard');
 
       })

@@ -1,14 +1,28 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../db/connection'); // Assuming you have a db connection module
+
+
 
 // Handle GET request for adding and editing a password
 router.get('/', (req, res) => {
-  res.render('addEditPassword');
+
+
+  res.render('addPassword');
 })
 
 router.post('/', (req, res) => {
   // Implement adding a new password
-  res.send('Add Password');
+  const { password, site_name, site_url, category, username } = req.body;
+
+  const queryString =
+  `INSERT INTO passwords (pass, created_at, site_name, site_url, user_id, category, username)
+  VALUES ($1, NOW(), $2, $3, $4, $5, $6) RETURNING id`
+
+  const queryStringValues = [password, site_name, site_url, user_id, category, username];
+
+  db.query(queryString, queryStringValues)
+  res.redirect('/add-password');
 });
 
 module.exports = router;
