@@ -10,16 +10,34 @@
   <main>
     <h1>Your Passwords</h1>
     <div class="category-container">
-      <!-- Example Category -->
-      <div class="category">
-        <h2>Social Media</h2>
-        <div class="password-list">
-          <!-- Example Password Card -->
-          <%- include('partials/passwordCard') %>
-          <!-- Repeat for each password -->
-        </div>
-      </div>
-      <!-- More categories as needed -->
+      <!-- Dynamically Render Categories and Passwords -->
+      <% if (passwords.length > 0) { %>
+        <% const categories = {}; %>
+        <% passwords.forEach(password => { %>
+          <% if (!categories[password.category_name]) { %>
+            <% categories[password.category_name] = []; %>
+          <% } %>
+          <% categories[password.category_name].push(password); %>
+        <% }); %>
+
+        <% for (let category in categories) { %>
+          <div class="category">
+            <h2><%= category %></h2>
+            <div class="password-list">
+              <% categories[category].forEach(password => { %>
+                <div class="password-card">
+                  <p><strong>Site Name:</strong> <%= password.site_name %></p>
+                  <p><strong>Site URL:</strong> <a href="<%= password.site_url %>" target="_blank"><%= password.site_url %></a></p>
+                  <p><strong>Password:</strong> <span class="copy-password" data-password="<%= password.pass %>"><%= password.pass %></span></p>
+                  <!-- Add any other necessary fields here -->
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        <% } %>
+      <% } else { %>
+        <p>No passwords stored yet.</p>
+      <% } %>
     </div>
   </main>
   <%- include('partials/footer') %>

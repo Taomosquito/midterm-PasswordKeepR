@@ -76,13 +76,10 @@ app.use('/contact', contactRoutes);
 
 app.get('/', (req, res) => {
   const userId = req.session.user_id; // assigns the user_id cookie's value to userId
-  if (!userId) { // if there is no user logged in redirects to login page
-     res.render('index');
+  if (!userId) { // if there is no user logged in, render the index page
+    return res.render('index');  // Use return to ensure only one response is sent
   }
-  res.redirect("/dashboard");
-
-  // before this only had res.render('index'), taken from express_server.js for tinyapp
-
+  res.redirect("/dashboard");  // If the user is logged in, redirect to the dashboard
 });
 
 app.listen(PORT, () => {

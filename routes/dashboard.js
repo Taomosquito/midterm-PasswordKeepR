@@ -4,24 +4,28 @@ const db = require('../db/connection'); // Assuming you have a db connection mod
 const dbEvents = require('../db/connection');
 const cookieSession = require("cookie-session");
 
-/*
-Data Required: email, organization, site_name, site_url, password (for each site), category (for each site)
-
-Functionality: AddPasswords. Generate Random Passwords.
-
-*/
-
+// This route handles GET requests to /dashboard
 router.get('/', (req, res) => {
   const userId = req.session.user_id;
-  db.query(`SELECT users.email, organizations.organization, passwords.pass, passwords.site_name, passwords.site_url, categories.organization
+
+  // Query to fetch the necessary data
+  db.query(`
+    SELECT users.email, organizations.organization, passwords.pass, passwords.site_name, passwords.site_url, categories.name AS category_name
     FROM users
     JOIN organizations ON organizations.id = users.organization_id
     JOIN passwords ON users.id = passwords.user_id
     JOIN categories ON categories.id = passwords.category_id
-    WHERE $1`, [userId])
+    WHERE users.id = $1`, [userId])
+    .then(data => {
+      const passwords = data.rows;
 
-  res.render('dashboard');
+      // Render the dashboard and pass the data
+      res.render('dashboard', { passwords: passwords });
+    })
+    .catch(err => {
+      console.error('Error executing query', err.stack);
+      res.status(500).send('Internal Server Error');
+    });
 });
-
 
 module.exports = router;
