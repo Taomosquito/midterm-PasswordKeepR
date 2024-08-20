@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 
       // Email is not in use, insert the new organization
       return db.query(
-        'INSERT INTO organizations (created_at, organization ) VALUES (NOW(), $1) RETURNING id',
+        'INSERT INTO organizations (organization ) VALUES ($1) RETURNING id',
         [organization]
       );
     })
@@ -46,7 +46,8 @@ router.post('/', (req, res) => {
     .then(userResult => {
      // Store the user's ID in the session
       // console.log(userResult.rows[0]);
-      req.session.user_id = userResult.rows[0].email;
+      req.session.email = userResult.rows[0].email;
+      req.session.user_id = userResult.rows[0].id;
 
       return res.redirect('/dashboard');
     })
