@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,25 +33,27 @@
                 <div class="password-box">
                   <!-- Red "X" button for deleting the entry -->
                   <button class="delete-button" data-id="<%= password.id %>" style="color: red; position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">✖</button>
+
+                  <!-- Form with Edit and COPY buttons -->
                   <form class="password-card" action="/edit-password/<%= password.id %>" method="POST">
                     <p>
                       <strong>Site Name:</strong>
                       <input class="editable" value="<%= password.site_name %>" name="site_name" />
                     </p>
                     <p>
-                     <strong>Site URL:</strong>
-                     <input class="editable" value="<%= password.site_url %>" name="site_url" />
+                      <strong>Site URL:</strong>
+                      <input class="editable" value="<%= password.site_url %>" name="site_url" />
                     </p>
                     <p>
                       <strong>Password:</strong>
                       <input class="editable" value="<%= password.pass %>" name="password" />
                     </p>
-                    <button type="submit">Edit</button>
+                    <div class="button-container">
+                      <!-- Edit and COPY buttons placed side by side -->
+                      <button type="submit" class="action-button">EDIT</button>
+                      <button type="button" class="action-button copy-button" data-password="<%= password.pass %>">COPY</button>
+                    </div>
                   </form>
-                  <!-- COPY button -->
-                  <div style="text-align: center; margin-top: 10px;">
-                    <button class="copy-button" data-password="<%= password.pass %>" style="background-color: #007BFF; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">COPY</button>
-                  </div>
                 </div>
               <% }); %>
 

@@ -56,3 +56,64 @@ body {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+ /* Add the following styles for grey text in the input fields */
+ input.editable {
+  color: grey; /* Change the text color to grey */
+  border: none;
+  border-bottom: 1px solid #ccc; /* Optional: keep the border line at the bottom */
+  background: none; /* Remove background for a clean look */
+  padding: 5px; /* Optional: Adjust padding for better spacing */
+}
+
+input.editable::placeholder {
+  color: grey; /* Ensure placeholder text is also grey */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 10px; /* Add space between the buttons */
+  margin-top: 10px;
+}
+
+.action-button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.nav-list {
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* Display the list items in a row */
+  gap: 20px; /* Add space between the items */
+}
+
+.nav-item {
+  display: inline; /* Ensure each item is displayed inline */
+}
+
+.nav-link {
+  text-decoration: none; /* Remove underline from links */
+  color: #007BFF; /* Set the link color */
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  text-decoration: underline; /* Optionally add underline on hover */
+}
+
+/* New Styles for Centering and Enlarging the Brand Name */
+.navbar .navbar-brand {
+  font-size: 2rem; /* Increase font size for PasswordKeepR */
+  font-weight: bold;
+  text-align: center; /* Center align the text */
+  display: block; /* Ensure it takes up the full width */
+  margin-bottom: 20px; /* Add some space below the brand name */
+}
