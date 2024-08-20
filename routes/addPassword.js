@@ -21,7 +21,14 @@ router.post('/', (req, res) => {
   const queryStringValues = [password, site_name, site_url, user_id, category, username];
 
   db.query(queryString, queryStringValues)
-  res.redirect('/add-password');
+  .then(() => {
+    res.redirect('/dashboard');
+  })
+  .catch((err) => {
+    console.error('unexpected error occurred')
+  })
+
+ res.redirect('/add-password');
 });
 
 module.exports = router;

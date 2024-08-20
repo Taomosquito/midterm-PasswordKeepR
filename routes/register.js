@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
       // console.log(userResult.rows[0]);
       req.session.user_id = userResult.rows[0].email;
 
-      return res.redirect('/');
+      return res.redirect('/dashboard');
     })
     .catch(err => {
       if (err === 'Email already in use') {
