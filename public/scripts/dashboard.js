@@ -19,7 +19,8 @@ $(document).ready(function() {
 
   // Additional Dashboard Interactions and Features
   // Example: Password copying functionality
-  $('.copy-password').on('click', function() {
+  $('.copy-button').on('click', function() {
+    console.log('inside copy button jquery functionality')
     const password = $(this).data('password');
     navigator.clipboard.writeText(password).then(() => {
       alert('Password copied to clipboard');
