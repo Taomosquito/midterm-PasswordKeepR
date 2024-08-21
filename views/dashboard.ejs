@@ -32,8 +32,9 @@
               <% categories[category].forEach(password => { %>
                 <div class="password-box">
                   <!-- Red "X" button for deleting the entry -->
-                  <button class="delete-button" data-id="<%= password.id %>" style="color: red; position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">✖</button>
-
+                  <form class="password-card" action="/delete-password/<%= password.id %>" method="POST">
+                    <button class="delete-button" data-id="<%= password.id %>" style="color: red; position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">✖</button>
+                  </form>
                   <!-- Form with Edit and COPY buttons -->
                   <form class="password-card" action="/edit-password/<%= password.id %>" method="POST">
                     <p>

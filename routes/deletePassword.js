@@ -11,3 +11,5 @@ router.post('/:id', (req, res) => {
     res.redirect('/dashboard')
   })
 })
+
+module.exports = router;
