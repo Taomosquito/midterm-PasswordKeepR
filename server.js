@@ -54,6 +54,7 @@ const termsOfServiceRoutes = require('./routes/termsOfService');
 const contactRoutes = require('./routes/contact');
 const editPassword = require('./routes/editPassword');
 const deletePassword = require('./routes/deletePassword');
+const addOrganization= require('./routes/addOrganization');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -72,6 +73,7 @@ app.use('/terms-of-service', termsOfServiceRoutes);
 app.use('/contact', contactRoutes);
 app.use('/edit-password', editPassword);
 app.use('/delete-password', deletePassword);
+app.use('/add-organization', addOrganization);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
