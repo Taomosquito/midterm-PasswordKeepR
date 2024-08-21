@@ -71,7 +71,7 @@ app.use('/privacy-policy', policiesRoutes);
 app.use('/terms-of-service', termsOfServiceRoutes);
 app.use('/contact', contactRoutes);
 app.use('/edit-password', editPassword);
-// app.use('/delete-password', deletePassword);
+//app.use('/delete-password', deletePassword);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
